@@ -1,0 +1,59 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Editor
+.vscode/
+.idea/
+
+# Build / binary
+C++/main
+
+# Keep the public repo lean: ignore local research / one-off scripts
+analyze_*.py
+calibrate.py
+check_params.py
+check_raqm.py
+color_check.py
+compare_w.py
+debug_*.py
+detailed_measure.py
+get_measurements.py
+get_true_color.py
+list_*.py
+measure*.py
+patch_main.py
+plan_test.py
+print_patch.py
+scratch.py
+test_*.py
+verify_test.py
+
+# Generated outputs: ignore all, then keep only README showcase files
+output/*
+!output/output_of_single.png
+!output/output_of_connection_with_others.png
+!output/output_with_name.png
+
+# Temporary / debug images in repo root
+debug_*.png
+temp_*.png
+test_font_*.png
+test_pingfang_*.png
+test_tony_medium.png
+
+# Sample assets: keep only the ones used in README
+real_example/*
+!real_example/real_example_of_single.png
+!real_example/real_example_of_connection_with_others.png
+
+# Private or ad-hoc local inputs
+TEST.PNG
+TEST1.jpg
