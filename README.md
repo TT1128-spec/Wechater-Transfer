@@ -2,6 +2,20 @@
 
 一个基于 OpenCV / NumPy / Pillow 的聊天截图重排原型。
 
+灵感来源：
+
+来自“求真书院”舆论贴，由于是第一视角截图
+
+曝光者很快受到处分
+
+不讨论事件本身的正确与否
+
+但是希望曝光者可以隐藏一下自己，分享聊天记录时把自己变成“观察者”
+
+从而降低曝光风险和保护自身权益
+
+希望能够被正确使用
+
 它的主要功能是：
 
 - 识别右侧绿色聊天气泡
@@ -12,7 +26,78 @@
 
 当前代码更接近“可工作的算法原型”，而不是完整产品。公开仓库默认只保留核心实现和展示资源；本地调试时用到的大量 `test_*` / `debug_*` / `measure_*` 脚本没有一并公开。
 
+## 使用说明
+
+在使用时，使用者可以先准备一份微信原聊天记录，可以选择是否带昵称
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>在“显示群成员昵称处”选择是否显示昵称</strong><br/>
+    <img src="IMG_5170.PNG" width="360" />
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC1:带昵称</strong><br/>
+    <img src="IMG_5172.jpg" width="360" />
+
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC2:不带昵称</strong><br/>
+    <img src="IMG_5171.jpg" width="360" />
+
+在使用时，可以通过在命令中选择yesnickname或者nonickname来知会程序是否要处理带昵称的聊天记录
+
+以PIC1和PIC2分别举例
+
+PIC1的运行命令为：
+
+python3 main.py yesnickname Tony TEST.PNG output/result_with_name.png
+
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC1运行示例</strong><br/>
+    <img src="截屏2026-04-13 17.26.29.png" width="5000" />
+
+PIC2的运行命令为：
+
+python3 main.py nonickname TEST.PNG output/result.png
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC2运行示例</strong><br/>
+    <img src="截屏2026-04-13 17.26.43.png" width="5000" />
+
+注：此处TEST.PNG为待处理的图片，output/result.png为处理后的图片，Tony为昵称
+
+可以替换为自己想处理的图片路径以及昵称
+
+另外，如果不带nonickname和yesnickname，默认无昵称
+
+python3 main.py TEST.PNG output/result.png
+
+
+
+
+
 ## 效果展示
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC1:带昵称</strong><br/>
+    <img src="截屏2026-04-13 11.31.17.png" width="5000" />
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+    <strong>PIC2:不带昵称</strong><br/>
+    <img src="截屏2026-04-13 11.03.24.png" width="5000" />
+
 
 <table>
   <tr>
@@ -35,15 +120,11 @@
       <img src="output/output_of_connection_with_others.png" width="260" />
     </td>
   </tr>
-  <tr>
-    <td align="center" colspan="2">
-      <strong>生成结果：带昵称</strong><br/>
-      <img src="output/output_with_name.png" width="360" />
-    </td>
-  </tr>
+
 </table>
 
 也可以直接打开 [compare.html](compare.html) 做本地对比查看。
+
 
 ## 核心流程
 
@@ -125,11 +206,27 @@ python3 main.py TEST.PNG output/result.png
 
 ## 当前限制
 
-- 参数明显偏向某一类聊天截图样式，尤其是“右侧绿色气泡 + 浅灰背景”。
-- 背景修补不是通用修复，而是从原图中找一块平整区域后模糊铺回。
-- 昵称排版目前是启发式规则，不是完整的字体测量与版式系统。
-- 本地实验脚本和校准脚本未纳入公开仓库，也不构成正式测试体系。
+- 参数仅仅偏向被修改方的纯文本聊天，即发送表情等特殊消息时，会难以检索，尚需要进一步升级，临时想法是通过第一句出现的文字检索到头像，再利用头像本身倒推被修改人发送的全部信息
+- 昵称字号字体颜色仍有待调整和限制，昵称排版目前是启发式规则，不是完整的字体测量与版式系统。同时，在测试的过程中发现不同人的微信之间的昵称字号与颜色并不相同，且尚未确定原因（调整iphone系统文字大小，微信系统文字大小仍无法统一昵称的字号，手机型号统一，微信版本统一）由于本人微信显示为相对粗体，所以用粗体处理yesnickname中的昵称，如果昵称不是粗体，则需要调整代码
+<table>
+  <tr>
+    <td align="center">
+      <strong>来自朋友手机的截图</strong><br/>
+      <img src="截屏2026-04-13 17.06.58.png" width="200" />
+    </td>
+    <td align="center">
+      <strong>来自本人手机的截图</strong><br/>
+      <img src="截屏2026-04-13 17.09.31.png" width="200" />
+    </td>
+  </tr>
+<table>
+可见昵称的字体大小和粗细并不一致，甚至可以说有很大的差别
 
+
+
+- 本地实验脚本和校准脚本未纳入公开仓库，也不构成正式测试体系。
+- 对背景的多样性产生的可能影响并未测试，目前只在白色背景下测试，预计背景的不同会影响程序的精准度，尤其是多彩（绿色）背景
+- 当前仅支持文字的单一字体，不支持第三方字体，且开发与测试均基于iphone，尚未测试其他设备
 ## 版本说明
 
 - `main.py` 是当前主要维护版本。
@@ -139,6 +236,6 @@ python3 main.py TEST.PNG output/result.png
 
 - 增加 `requirements.txt` 和更明确的环境说明
 - 将 `main.py` 拆分成检测、重建、排版等模块
-- 提供批处理命令行接口
-- 引入真实测试样例和回归测试
-- 将硬编码的字体路径改成可配置项
+- 引入更加多元化的测试样例，包括但不限于不同背景，不同字体，不同消息类型等
+- 对多种类型的消息进行处理，包括但不限于表情，图片，视频，文件等
+- 将硬编码的字体路径改成可配置项，并支持多字体与不同类型的设备
