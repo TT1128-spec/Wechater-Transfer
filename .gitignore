@@ -48,6 +48,15 @@ temp_*.png
 test_font_*.png
 test_pingfang_*.png
 test_tony_medium.png
+IMG_5170.PNG
+IMG_5171.jpg
+IMG_5172.jpg
+截屏*.png
+README.html
+README.pdf
+README.png
+README.jpeg
+output0for0readme*.jpg
 
 # Sample assets: keep only the ones used in README
 real_example/*

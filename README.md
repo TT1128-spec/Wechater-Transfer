@@ -34,19 +34,19 @@
   <tr>
     <td align="center" colspan="2">
     <strong>在“显示群成员昵称处”选择是否显示昵称</strong><br/>
-    <img src="IMG_5170.PNG" width="360" />
+    <img src="assets/readme/usage-toggle-nickname.PNG" width="360" />
 <table>
   <tr>
     <td align="center" colspan="2">
     <strong>PIC1:带昵称</strong><br/>
-    <img src="IMG_5172.jpg" width="360" />
+    <img src="assets/readme/example-with-nickname.jpg" width="360" />
 
 
 <table>
   <tr>
     <td align="center" colspan="2">
     <strong>PIC2:不带昵称</strong><br/>
-    <img src="IMG_5171.jpg" width="360" />
+    <img src="assets/readme/example-without-nickname.jpg" width="360" />
 
 在使用时，可以通过在命令中选择yesnickname或者nonickname来知会程序是否要处理带昵称的聊天记录
 
@@ -61,7 +61,7 @@ python3 main.py yesnickname Tony TEST.PNG output/result_with_name.png
   <tr>
     <td align="center" colspan="2">
     <strong>PIC1运行示例</strong><br/>
-    <img src="截屏2026-04-13 17.26.29.png" width="5000" />
+    <img src="assets/readme/run-with-nickname.png" width="5000" />
 
 PIC2的运行命令为：
 
@@ -71,7 +71,7 @@ python3 main.py nonickname TEST.PNG output/result.png
   <tr>
     <td align="center" colspan="2">
     <strong>PIC2运行示例</strong><br/>
-    <img src="截屏2026-04-13 17.26.43.png" width="5000" />
+    <img src="assets/readme/run-without-nickname.png" width="5000" />
 
 注：此处TEST.PNG为待处理的图片，output/result.png为处理后的图片，Tony为昵称
 
@@ -90,13 +90,13 @@ python3 main.py TEST.PNG output/result.png
   <tr>
     <td align="center" colspan="2">
     <strong>PIC1:带昵称</strong><br/>
-    <img src="截屏2026-04-13 11.31.17.png" width="5000" />
+    <img src="assets/readme/result-with-nickname.png" width="5000" />
 
 <table>
   <tr>
     <td align="center" colspan="2">
     <strong>PIC2:不带昵称</strong><br/>
-    <img src="截屏2026-04-13 11.03.24.png" width="5000" />
+    <img src="assets/readme/result-without-nickname.png" width="5000" />
 
 
 <table>
@@ -212,11 +212,11 @@ python3 main.py TEST.PNG output/result.png
   <tr>
     <td align="center">
       <strong>来自朋友手机的截图</strong><br/>
-      <img src="截屏2026-04-13 17.06.58.png" width="200" />
+      <img src="assets/readme/nickname-friend-phone.png" width="200" />
     </td>
     <td align="center">
       <strong>来自本人手机的截图</strong><br/>
-      <img src="截屏2026-04-13 17.09.31.png" width="200" />
+      <img src="assets/readme/nickname-my-phone.png" width="200" />
     </td>
   </tr>
 <table>
