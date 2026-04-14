@@ -2,21 +2,20 @@
 
 一个基于 OpenCV / NumPy / Pillow 的聊天截图重排原型。
 
-灵感来源：
+这个项目的目标是把聊天截图中的“自己”隐藏成观察者视角：  
+识别右侧绿色聊天气泡与对应头像，将其镜像到左侧，重绘为白色气泡，并支持可选昵称。
 
-来自“求真书院”舆论贴，由于是第一视角截图
+## 项目动机
 
-曝光者很快受到处分
+灵感来自一类第一视角聊天截图场景。
 
-不讨论事件本身的正确与否
+- 不讨论事件本身的是非
+- 重点是降低分享聊天记录时暴露自身身份的风险
+- 希望在保留聊天内容的同时，把分享者处理成“观察者”视角
 
-但是希望曝光者可以隐藏一下自己，分享聊天记录时把自己变成“观察者”
+希望这个工具被谨慎且正确地使用。
 
-从而降低曝光风险和保护自身权益
-
-希望能够被正确使用
-
-它的主要功能是：
+## 主要功能
 
 - 识别右侧绿色聊天气泡
 - 识别对应头像
@@ -28,103 +27,110 @@
 
 ## 使用说明
 
-在使用时，使用者可以先准备一份微信原聊天记录，可以选择是否带昵称
+### 1. 选择是否显示昵称
+
+使用前，可以先在微信中决定是否开启“显示群成员昵称”。
+
+<p align="center">
+  <img src="assets/readme/usage-toggle-nickname.PNG" alt="显示群成员昵称设置" width="360" />
+</p>
+
+### 2. 准备输入图片
+
+下面分别是带昵称和不带昵称的输入示例：
 
 <table>
   <tr>
-    <td align="center" colspan="2">
-    <strong>在“显示群成员昵称处”选择是否显示昵称</strong><br/>
-    <img src="assets/readme/usage-toggle-nickname.PNG" width="360" />
-<table>
-  <tr>
-    <td align="center" colspan="2">
-    <strong>PIC1:带昵称</strong><br/>
-    <img src="assets/readme/example-with-nickname.jpg" width="360" />
+    <td align="center">
+      <strong>PIC1：带昵称</strong><br/>
+      <img src="assets/readme/example-with-nickname.jpg" alt="带昵称输入示例" width="320" />
+    </td>
+    <td align="center">
+      <strong>PIC2：不带昵称</strong><br/>
+      <img src="assets/readme/example-without-nickname.jpg" alt="不带昵称输入示例" width="320" />
+    </td>
+  </tr>
+</table>
 
+### 3. 运行命令
 
-<table>
-  <tr>
-    <td align="center" colspan="2">
-    <strong>PIC2:不带昵称</strong><br/>
-    <img src="assets/readme/example-without-nickname.jpg" width="360" />
+程序通过 `yesnickname` 或 `nonickname` 来区分输入是否带昵称。
 
-在使用时，可以通过在命令中选择yesnickname或者nonickname来知会程序是否要处理带昵称的聊天记录
+带昵称示例命令：
 
-以PIC1和PIC2分别举例
-
-PIC1的运行命令为：
-
+```bash
 python3 main.py yesnickname Tony TEST.PNG output/result_with_name.png
+```
 
+<p align="center">
+  <img src="assets/readme/run-with-nickname.png" alt="带昵称运行示例" width="760" />
+</p>
 
-<table>
-  <tr>
-    <td align="center" colspan="2">
-    <strong>PIC1运行示例</strong><br/>
-    <img src="assets/readme/run-with-nickname.png" width="5000" />
+不带昵称示例命令：
 
-PIC2的运行命令为：
-
+```bash
 python3 main.py nonickname TEST.PNG output/result.png
+```
 
-<table>
-  <tr>
-    <td align="center" colspan="2">
-    <strong>PIC2运行示例</strong><br/>
-    <img src="assets/readme/run-without-nickname.png" width="5000" />
+<p align="center">
+  <img src="assets/readme/run-without-nickname.png" alt="不带昵称运行示例" width="760" />
+</p>
 
-注：此处TEST.PNG为待处理的图片，output/result.png为处理后的图片，Tony为昵称
+说明：
 
-可以替换为自己想处理的图片路径以及昵称
+- `TEST.PNG` 为待处理图片
+- `output/result.png` 为处理后的输出图片
+- `Tony` 为昵称示例，可替换为你自己的昵称
 
-另外，如果不带nonickname和yesnickname，默认无昵称
+如果不写 `nonickname` 或 `yesnickname`，程序默认按无昵称模式处理：
 
+```bash
 python3 main.py TEST.PNG output/result.png
-
-
-
-
+```
 
 ## 效果展示
-<table>
-  <tr>
-    <td align="center" colspan="2">
-    <strong>PIC1:带昵称</strong><br/>
-    <img src="assets/readme/result-with-nickname.png" width="5000" />
+
+### 处理结果
 
 <table>
   <tr>
-    <td align="center" colspan="2">
-    <strong>PIC2:不带昵称</strong><br/>
-    <img src="assets/readme/result-without-nickname.png" width="5000" />
+    <td align="center">
+      <strong>PIC1：带昵称结果</strong><br/>
+      <img src="assets/readme/result-with-nickname.png" alt="带昵称处理结果" width="360" />
+    </td>
+    <td align="center">
+      <strong>PIC2：不带昵称结果</strong><br/>
+      <img src="assets/readme/result-without-nickname.png" alt="不带昵称处理结果" width="360" />
+    </td>
+  </tr>
+</table>
 
+### 参考图与生成结果对比
 
 <table>
   <tr>
     <td align="center">
       <strong>真实参考图：单人</strong><br/>
-      <img src="real_example/real_example_of_single.png" width="260" />
+      <img src="real_example/real_example_of_single.png" alt="真实参考图 单人" width="260" />
     </td>
     <td align="center">
       <strong>生成结果：单人</strong><br/>
-      <img src="output/output_of_single.png" width="260" />
+      <img src="output/output_of_single.png" alt="生成结果 单人" width="260" />
     </td>
   </tr>
   <tr>
     <td align="center">
       <strong>真实参考图：多人连续消息</strong><br/>
-      <img src="real_example/real_example_of_connection_with_others.png" width="260" />
+      <img src="real_example/real_example_of_connection_with_others.png" alt="真实参考图 多人连续消息" width="260" />
     </td>
     <td align="center">
       <strong>生成结果：多人连续消息</strong><br/>
-      <img src="output/output_of_connection_with_others.png" width="260" />
+      <img src="output/output_of_connection_with_others.png" alt="生成结果 多人连续消息" width="260" />
     </td>
   </tr>
-
 </table>
 
 也可以直接打开 [compare.html](compare.html) 做本地对比查看。
-
 
 ## 核心流程
 
@@ -163,39 +169,13 @@ pip install opencv-python numpy Pillow
 - 昵称模式默认优先使用 macOS 系统字体路径，中文昵称在 macOS 上效果更稳定。
 - 如果找不到对应字体，ASCII 文本会退回到 OpenCV 文本绘制，效果会差一些。
 
-## 用法
-
-不加昵称：
-
-```bash
-python3 main.py nonickname TEST.PNG output/result.png
-```
-
-加昵称：
-
-```bash
-python3 main.py yesnickname Tony TEST.PNG output/result_with_name.png
-```
-
-也支持最简参数形式：
-
-```bash
-python3 main.py TEST.PNG output/result.png
-```
-
-程序运行后会在终端输出一些诊断信息，例如：
-
-- 中线位置
-- 检测到的气泡数量
-- 检测到的头像数量
-- 是否启用昵称模式
-
 ## 仓库结构
 
 ```text
 .
 ├── main.py                  # Python 主实现
 ├── C++/main.cpp             # C++ 对照实现
+├── assets/readme/           # README 展示用图片
 ├── real_example/            # 参考效果图
 ├── output/                  # 示例输出图
 ├── compare.html             # 本地效果对比页
@@ -206,27 +186,30 @@ python3 main.py TEST.PNG output/result.png
 
 ## 当前限制
 
-- 参数仅仅偏向被修改方的纯文本聊天，即发送表情等特殊消息时，会难以检索，尚需要进一步升级，临时想法是通过第一句出现的文字检索到头像，再利用头像本身倒推被修改人发送的全部信息
-- 昵称字号字体颜色仍有待调整和限制，昵称排版目前是启发式规则，不是完整的字体测量与版式系统。同时，在测试的过程中发现不同人的微信之间的昵称字号与颜色并不相同，且尚未确定原因（调整iphone系统文字大小，微信系统文字大小仍无法统一昵称的字号，手机型号统一，微信版本统一）由于本人微信显示为相对粗体，所以用粗体处理yesnickname中的昵称，如果昵称不是粗体，则需要调整代码
+- 参数目前主要偏向“纯文本聊天”场景；发送表情、图片、视频、文件等特殊消息时，检测与重排的稳定性不足。
+- 昵称字号、颜色和粗细目前仍依赖启发式规则，不是完整的字体测量与版式系统。
+- 在测试中发现，不同设备上的微信昵称粗细和字号并不完全一致，即使手机型号和微信版本相同，显示效果也可能不同。
+- 本地实验脚本和校准脚本未纳入公开仓库，也不构成正式测试体系。
+- 对背景多样性影响的测试还不充分，目前主要在浅色背景下验证；复杂或多彩背景预计会降低准确率。
+- 当前仅支持较有限的系统字体路径，尚未完整支持第三方字体，也尚未系统测试非 iPhone 设备。
+
+昵称显示差异示例：
+
 <table>
   <tr>
     <td align="center">
       <strong>来自朋友手机的截图</strong><br/>
-      <img src="assets/readme/nickname-friend-phone.png" width="200" />
+      <img src="assets/readme/nickname-friend-phone.png" alt="朋友手机昵称显示" width="220" />
     </td>
     <td align="center">
       <strong>来自本人手机的截图</strong><br/>
-      <img src="assets/readme/nickname-my-phone.png" width="200" />
+      <img src="assets/readme/nickname-my-phone.png" alt="本人手机昵称显示" width="220" />
     </td>
   </tr>
-<table>
-可见昵称的字体大小和粗细并不一致，甚至可以说有很大的差别
+</table>
 
+可见昵称的字体大小和粗细并不完全一致，差异比较明显。
 
-
-- 本地实验脚本和校准脚本未纳入公开仓库，也不构成正式测试体系。
-- 对背景的多样性产生的可能影响并未测试，目前只在白色背景下测试，预计背景的不同会影响程序的精准度，尤其是多彩（绿色）背景
-- 当前仅支持文字的单一字体，不支持第三方字体，且开发与测试均基于iphone，尚未测试其他设备
 ## 版本说明
 
 - `main.py` 是当前主要维护版本。
@@ -236,6 +219,6 @@ python3 main.py TEST.PNG output/result.png
 
 - 增加 `requirements.txt` 和更明确的环境说明
 - 将 `main.py` 拆分成检测、重建、排版等模块
-- 引入更加多元化的测试样例，包括但不限于不同背景，不同字体，不同消息类型等
-- 对多种类型的消息进行处理，包括但不限于表情，图片，视频，文件等
-- 将硬编码的字体路径改成可配置项，并支持多字体与不同类型的设备
+- 引入更多元化的测试样例，包括不同背景、不同字体、不同消息类型
+- 对更多消息类型进行处理，包括表情、图片、视频、文件等
+- 将硬编码的字体路径改成可配置项，并支持多字体与不同类型设备
